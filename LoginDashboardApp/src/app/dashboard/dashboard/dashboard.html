@@ -1,0 +1,23 @@
+<div class="dashboard-container">
+  <header>
+    <h1>Dashboard</h1>
+    <button (click)="logout()" class="logout-button">Logout</button>
+  </header>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="chart-container" *ngIf="barChartData.datasets.length > 0 && !errorMessage">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="barChartType"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend">
+    </canvas>
+  </div>
+  <div *ngIf="!barChartData.datasets.length && !errorMessage">
+    Loading chart data...
+  </div>
+</div>
